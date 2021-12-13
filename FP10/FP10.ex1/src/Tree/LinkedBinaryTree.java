@@ -226,7 +226,7 @@ public class LinkedBinaryTree<T> implements BinaryTreeADT<T> {
             
             BinaryTreeNode<T> tmpNode = (BinaryTreeNode<T>) nodes.dequeue();
             
-            if (tmpNode.element != null) {
+            if (tmpNode != null) {
                 
                 resultList.addToRear(tmpNode.element);
                 
