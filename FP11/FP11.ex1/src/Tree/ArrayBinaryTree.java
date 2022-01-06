@@ -15,7 +15,7 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
     
     protected int count;
     protected T[] tree;
-    private final int CAPACITY = 50;
+    protected final int CAPACITY = 50;
     
     /**
      * Cria uma arvore binaria vazia
@@ -134,8 +134,8 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         
         if (node < tree.length) {
             if (tree[node] != null){
-                inorder(node*2+1, temList);
-                temList.addToRear(tree[node]); //left
+                inorder(node*2+1, temList); //left
+                temList.addToRear(tree[node]); 
                 inorder((node+1)*2, temList); //right
             }
         }
@@ -200,11 +200,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
             }
         }
     }
-/**
+
     @Override
     public Iterator<T> iteratorLevelOrder() throws ElementNotFoundException, EmptyCollectionException {
         
-        //LinkedQueue<T> nodes = new LinkedQueue<T>();
         ArrayUnorderedList<T> tempList = new ArrayUnorderedList<>();
         int ct = 0;
         int i = 0;
@@ -220,12 +219,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
             }
             i++;
         }
-        //nodes.enqueue(tree[0]);
-        
-        
+
         return tempList.iterator();
-    }*/
-    
+    }
+    /**
     @Override
     public Iterator<T> iteratorLevelOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -235,5 +232,5 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         }
         
         return templist.iterator();
-    }
+    }*/
 }

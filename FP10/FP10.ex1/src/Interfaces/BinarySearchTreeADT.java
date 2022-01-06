@@ -32,13 +32,13 @@ public interface BinarySearchTreeADT<T> extends BinaryTreeADT<T> {
      * Remove e retorna o elemento menor da arvore
      * @return o elemento menor da arvore
      */
-    public T removeMin() throws EmptyCollectionException;
+    public T removeMin() throws EmptyCollectionException, ElementNotFoundException;
     
     /**
      * Remove e retorna o elemento maior da arvore
      * @return o maior elemento da arvore
      */
-    public T removeMax() throws EmptyCollectionException;
+    public T removeMax() throws EmptyCollectionException, ElementNotFoundException;
     
     /**
      * Retorna a referencia do elemento menor da arvore

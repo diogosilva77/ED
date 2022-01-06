@@ -200,7 +200,7 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
             }
         }
     }
-/**
+
     @Override
     public Iterator<T> iteratorLevelOrder() throws ElementNotFoundException, EmptyCollectionException {
         
@@ -224,8 +224,8 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         
         
         return tempList.iterator();
-    }*/
-    
+    }
+    /**
     @Override
     public Iterator<T> iteratorLevelOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -235,5 +235,5 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         }
         
         return templist.iterator();
-    }
+    }*/
 }

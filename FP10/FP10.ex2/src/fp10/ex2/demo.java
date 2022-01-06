@@ -1,10 +1,9 @@
-package fp10.ex1;
+package fp10.ex2;
 
 import Exceptions.ElementNotFoundException;
 import Exceptions.EmptyCollectionException;
-import Tree.LinkedBinarySearchTree;
+import Tree.ArrayBinarySearchTree;
 import java.util.Iterator;
-
 /**
  *
  * @author dmanu
@@ -16,7 +15,7 @@ public class demo {
      */
     public static void main(String[] args) throws ElementNotFoundException, EmptyCollectionException {
         
-        LinkedBinarySearchTree<Integer> tree = new LinkedBinarySearchTree<>();
+        ArrayBinarySearchTree<Integer> tree = new ArrayBinarySearchTree<>();
         
         tree.addElement(10);
         tree.addElement(5);
@@ -27,26 +26,23 @@ public class demo {
         tree.addElement(2);
         tree.addElement(4);
         tree.addElement(7);
-        
-        //tree.removeElement(7);
-        tree.removeAllOccurrences(7);
+        tree.addElement(1);
+        tree.addElement(17);
+        tree.addElement(24);
+        tree.addElement(12);
+        tree.addElement(16);
+       
+        //tree.removeAllOccurrences(7);
         
         System.out.println("Min: " + tree.findMin());
         System.out.println("Max: " + tree.findMax());
-        System.out.println("Size: " + tree.size());
-        
-        tree.removeMin();
-        tree.removeMax();
-        
-        Iterator itr = tree.iteratorLevelOrder();
+        //tree.removeMin();
+        //tree.removeMax();
+               
+        Iterator itr = tree.iteratorPreOrder();
         
         while (itr.hasNext()) {
             System.out.println(itr.next());
         }
-        
-        //System.out.println("Min: " + tree.findMin());
-        //System.out.println("Max: " + tree.findMax());
-        //System.out.println("Size: " + tree.size());
-    }
-    
+    }    
 }

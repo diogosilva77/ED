@@ -238,8 +238,8 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
                 removeElement(targetElement);
             }
         }
-        catch (Exception ElementNotFoundException){
-            System.out.println(ElementNotFoundException.toString());
+        catch (Exception e){
+            
         }
     }
     
@@ -250,34 +250,9 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      * @throws EmptyCollectionException se estiver vazia ocorre exceção
      */
     @Override
-    public T removeMin() throws EmptyCollectionException {
+    public T removeMin() throws EmptyCollectionException, ElementNotFoundException{
         
-        T result = null;
-        
-        if (isEmpty()) {
-            throw new EmptyCollectionException("Binary Search Tree");
-        }
-        else{
-            if (root.left == null) {
-                
-                result = root.element;
-                root = root.right;
-            }
-            else{
-                BinaryTreeNode<T> parent = root;
-                BinaryTreeNode<T> current = root.left;
-                
-                while (current.left != null) {
-                    
-                    parent = current;
-                    current = current.left;
-                }
-                result = current.element;
-                parent.left = current.right;
-            }
-            count--;
-        }
-        return result;
+        return removeElement(findMin());
     }
     
     /**
@@ -287,35 +262,9 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      * @throws EmptyCollectionException se estiver vazia ocorre exceção
      */
     @Override
-    public T removeMax() throws EmptyCollectionException {
+    public T removeMax() throws EmptyCollectionException, ElementNotFoundException {
         
-        T result = null;
-        
-        if (isEmpty()) {
-            throw new EmptyCollectionException("Binary Search Tree");
-        }
-        else {
-            
-            if (root.right == null) {
-                
-                result = root.element;
-                root = root.left;
-            }
-            else{
-                BinaryTreeNode<T> parent = root;
-                BinaryTreeNode<T> current = root.right;
-                
-                while (current.right != null) {
-                    
-                    parent = current;
-                    current = current.right;
-                }
-                result = current.element;
-                parent.right = current.left;
-            }
-            count--;
-        }
-        return result;
+        return removeElement(findMax());
     }
     
     /**
@@ -329,7 +278,7 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
         T result = null;
         
         if (isEmpty()) {
-            throw new EmptyCollectionException("binary tree");
+            throw new EmptyCollectionException("Árvore vazia");
         }
         else{
             BinaryTreeNode<T> current = root;
@@ -353,7 +302,7 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
         T result = null;
         
         if (isEmpty()) {
-            throw new EmptyCollectionException("binary tree");
+            throw new EmptyCollectionException("Árvore vazia");
         }
         else{
             BinaryTreeNode<T> current = root;

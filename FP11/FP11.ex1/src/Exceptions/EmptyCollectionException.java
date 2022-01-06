@@ -6,7 +6,7 @@ package Exceptions;
  */
 public class EmptyCollectionException extends Exception{
     
-    public final static String EMPTYCOLLECTION = "Coleção Vazia";
+    public final static String EMPTYCOLLECTION = "Árvore vazia";
 
     public EmptyCollectionException() {
     }
