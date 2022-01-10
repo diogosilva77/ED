@@ -30,7 +30,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
             expandList();
         }
 
-        for (int i = 0; i >= index; i--) {
+        for (int i = size - 1; i >= index; i--) {
             array[i + 1] = array[i];
         }
         array[0] = element;
