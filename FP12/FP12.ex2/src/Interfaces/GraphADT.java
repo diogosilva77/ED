@@ -26,14 +26,14 @@ public interface GraphADT<T> {
      * @param vertex1 o primeiro vértice
      * @param vertex2 o segundo vértice
      */
-    public void addEdge (T vertex1, T vertex2) throws GraphExceptions;
+    public void addEdge (T vertex1, T vertex2);
     
     /**
      * Remove uma aresta entre dois vértices do grafo. 
      * @param vertex1 o primeiro vértice
      * @param vertex2 o segundo vértice
      */
-    public void removeEdge (T vertex1, T vertex2) throws GraphExceptions;
+    public void removeEdge (T vertex1, T vertex2);
     
     /**
      * Retorna o primeiro iterador de largura começando com o vértice fornecido.

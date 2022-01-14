@@ -12,7 +12,7 @@ import Stack.LinkedStack;
  *
  * @author dmanu
  */
-public class Graph<T> implements GraphADT<T> {
+public class GraphMatrix<T> implements GraphADT<T> {
     
     protected final int DEFAULT_CAPACITY = 10;
     protected int numVertices; //numero de vértices do grafo
@@ -22,7 +22,7 @@ public class Graph<T> implements GraphADT<T> {
     /**
      * Cria um grafo vazio.
      */
-    public Graph() {
+    public GraphMatrix() {
         numVertices = 0;
         this.adjMatrix = new boolean[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
         this.vertices = (T[])(new Object[DEFAULT_CAPACITY]);
@@ -112,7 +112,7 @@ public class Graph<T> implements GraphADT<T> {
      * @param vertex2 o segundo vértice
      */
     @Override
-    public void addEdge(T vertex1, T vertex2) {
+    public void addEdge(T vertex1, T vertex2) throws GraphExceptions{
         
         addEdge(getIndex(vertex1), getIndex(vertex2));
     }
@@ -122,11 +122,14 @@ public class Graph<T> implements GraphADT<T> {
      * @param index1 o primeiro índice
      * @param index2 o segundo índice
      */
-    public void addEdge(int index1, int index2) {
+    public void addEdge(int index1, int index2) throws GraphExceptions {
         
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = true;
-            adjMatrix[index2][index1] = true;
+            adjMatrix[index2][index1] = true; //comentar para grafos direcionados
+        }
+        else {
+            throw new GraphExceptions(GraphExceptions.ELEMENT_NOT_FOUND);
         }
     }
     
@@ -159,8 +162,19 @@ public class Graph<T> implements GraphADT<T> {
     }
     
     @Override
-    public void removeEdge(T vertex1, T vertex2) {
-  
+    public void removeEdge(T vertex1, T vertex2) throws GraphExceptions{
+        removeEdge(getIndex(vertex1), getIndex(vertex2));
+    }
+    
+    private void removeEdge(int index1, int index2) throws GraphExceptions{
+        
+        if (indexIsValid(index1) && indexIsValid(index2)) {
+            adjMatrix[index1][index2] = false;
+            adjMatrix[index2][index1] = false; //comentar para grafos direcionados
+        }
+        else {
+            throw new GraphExceptions(GraphExceptions.ELEMENT_NOT_FOUND);
+        }
     }
 
     @Override
@@ -261,11 +275,9 @@ public class Graph<T> implements GraphADT<T> {
         int[] pathLength = new int[numVertices];
         int[] predecessor = new int[numVertices];
         LinkedQueue<Integer> traversalQueue = new LinkedQueue<Integer>();
-        ArrayUnorderedList<Integer> resultList
-                = new ArrayUnorderedList<Integer>();
+        ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<Integer>();
 
-        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)
-                || (startIndex == targetIndex)) {
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex) || (startIndex == targetIndex)) {
             return resultList.iterator();
         }
 
